@@ -98,13 +98,14 @@ class _HomeItem extends StatelessWidget {
         onTap: onTap,
         child: Stack(
           children: [
-            if (isOpen)
-              Positioned(
-                right: 0,
-                top: 0,
-                bottom: 0,
-                child: Align(
-                  alignment: Alignment.centerRight,
+            Positioned(
+              right: 0,
+              top: 0,
+              bottom: 0,
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Opacity(
+                  opacity: isOpen ? 1 : 0,
                   child: Container(
                     color: guitar.color,
                     width: width / 2,
@@ -115,9 +116,7 @@ class _HomeItem extends StatelessWidget {
                           fit: BoxFit.cover,
                           height: double.infinity,
                           width: double.infinity,
-                        )
-                            .animate()
-                            .fade(duration: const Duration(milliseconds: 200)),
+                        ),
                         Positioned.fill(
                             child: Container(
                           color: guitar.color.withOpacity(
@@ -129,6 +128,9 @@ class _HomeItem extends StatelessWidget {
                   ),
                 ),
               ),
+            )
+                .animate(delay: const Duration(milliseconds: 200))
+                .fade(duration: _duration),
             Positioned.fill(
               top: kDefaultMargin / 2,
               left: kDefaultMargin / 2,
